@@ -2,6 +2,7 @@ const express=require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const app=express();
+const path =require("node:path");
 const multer=require("multer");
 const jwt=require("jsonwebtoken");
 const bcrypt=require("bcrypt");
@@ -18,6 +19,7 @@ const storage = multer.diskStorage({
   })
   
   const upload = multer({ storage: storage })
+  app.use("client/build",express.static(path.join(__dirname,"./client/build")));
 app.use(cors());
 // app.use(express.json()); collects the data and stores it
 app.use(express.json());
