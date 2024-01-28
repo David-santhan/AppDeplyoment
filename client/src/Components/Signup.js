@@ -31,7 +31,7 @@ function Signup() {
   //     body:dataToSendInJSON,
   //     headers:myHeader,
   //   };
-  //   let JSONData=await fetch("/signup",reqOption);
+  //   let JSONData=await fetch("http://localhost:1234/signup",reqOption);
   //   // Converting JSON to JS
   //   let JSOData= await JSONData.json();
   //   console.log(JSOData);
@@ -66,13 +66,11 @@ function Signup() {
     for(let i=0;i<profilepicRef.current.files.length;i++){
       dataToSend.append("profilepic",profilepicRef.current.files[i]);
     }
-   
-
     let reqOption={
       method:"Post",
       body:dataToSend
     };
-    let JSONData=await fetch("/signup",reqOption);
+    let JSONData=await fetch("http://localhost:1234/signup",reqOption);
     let JSOData= await JSONData.json();
     if (JSOData.status=="Success") {
       alert(JSOData.msg);

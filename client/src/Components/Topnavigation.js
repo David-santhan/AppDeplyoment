@@ -7,7 +7,7 @@ function Topnavigation() {
     let navigate=useNavigate();
 let storeObj=useSelector((store)=>{return store;});
 useEffect(()=>{
-    if (storeObj && storeObj.loginDetails && storeObj.loginDetails.email) {
+    if (storeObj && storeObj.loginReducer.loginDetails && storeObj.loginReducer.loginDetails.email) {
         
     }else{
        navigate("/");
@@ -18,6 +18,18 @@ useEffect(()=>{
         if (obj.isActive==true) {
             return{backgroundColor:"lightgreen",color:"white"};      
         }
+    }
+    let deleteProfile=async ()=>{
+        let reqOption={
+            method:"DELETE",
+        };
+        let url=`http://localhost:1234/deleteprofile?email=${storeObj.loginReducer.loginDetails.email}`;
+     let JSONData=await fetch(url,reqOption);
+     let JSOData=await JSONData.json();
+     if(JSOData.status=="success"){
+        alert(JSOData.msg);
+        navigate("/");
+     }
     }
   return (
     <nav>
@@ -30,9 +42,21 @@ useEffect(()=>{
     <NavLink to="/Leave"style={(obj)=>{
         return highlightActiveLink(obj);
     }}>Leave</NavLink>
-     <NavLink to="/"style={(obj)=>{
+    <NavLink to="/Editprofile"style={(obj)=>{
         return highlightActiveLink(obj);
-    }}>Logout</NavLink>
+    }}>Edit Profile</NavLink>
+    <NavLink to="/Leave"style={(obj)=>{
+        return highlightActiveLink(obj);
+    }}
+    onClick={()=>{
+       deleteProfile();
+    }}
+    >Delete Profile</NavLink>
+     <NavLink to="/"
+     onClick={()=>{
+        localStorage.clear();
+     }}
+    >Logout</NavLink>
     </nav>
    
   )
