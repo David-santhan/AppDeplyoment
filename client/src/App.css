@@ -2,6 +2,7 @@
 form{
   background-color: rgba(156, 166, 203, 0.495);
   width: 450px;
+  height: 600px;
   margin: 50px;
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
@@ -34,6 +35,9 @@ button:hover{
   width: 100px;
   height: 50px;
   border: 2px solid gray;
+}
+.loginform{
+  height: 300px;
 }
 .App{
   text-align: center;

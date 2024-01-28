@@ -1,10 +1,8 @@
 
 import React, {useRef, useState} from 'react'
 import { Link } from 'react-router-dom';
-import axios from "axios";
 
 function Signup() {
-   axios.defaults.baseURL = "http://localhost:1234";
     let firstNameRef=useRef();
   let lastNameRef=useRef();
   let ageRef=useRef();
@@ -68,20 +66,20 @@ function Signup() {
     for(let i=0;i<profilepicRef.current.files.length;i++){
       dataToSend.append("profilepic",profilepicRef.current.files[i]);
     }
-    let response=await axios.post("/signup",dataToSend);
-    // let reqOption={
-    //   method:"Post",
-    //   body:dataToSend
-    // };
-    // let JSONData=await fetch("http://localhost:1234/signup",reqOption);
-    // // let JSOData= await JSONData.json();
-    // let JSOData=await response.json();
-    if (response.data=="Success") {
-      alert(response.data.msg);
+   
+
+    let reqOption={
+      method:"Post",
+      body:dataToSend
+    };
+    let JSONData=await fetch("http://localhost:1234/signup",reqOption);
+    let JSOData= await JSONData.json();
+    if (JSOData.status=="Success") {
+      alert(JSOData.msg);
     } else {
-      alert(response.data.msg);
+      alert(JSOData.msg);
     }
-    console.log(response.data);
+    console.log(JSOData);
   }
   return (
     <div className='App'>

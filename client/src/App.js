@@ -6,7 +6,6 @@ import Leave from './Components/Leave';
 import Tasks from './Components/Tasks';
 import Home from './Components/Home';
 import { BrowserRouter,Routes,Route,Link } from 'react-router-dom';
-import Editprofile from './Components/Editprofile';
 function App() {
   
   return (
@@ -18,7 +17,6 @@ function App() {
       <Route path="/Signup"element={<Signup/>}></Route>
       <Route path="/Leave"element={<Leave/>}></Route>
       <Route path="/Tasks"element={<Tasks/>}></Route>
-      <Route path="/Editprofile"element={<Editprofile/>}></Route>
     </Routes>
     </BrowserRouter>
     </div>
